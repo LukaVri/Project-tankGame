@@ -18,15 +18,17 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 	int size;
 	int direction;
 	int type;
-
-	Ammo(int type, int direction, Main app, String sprite) {
+	int speed;
+	Ammo(int type, int direction, Main app, String sprite,int speed) {
 
 		super(new Sprite(Main.MEDIA_URL.concat(sprite)));
 		this.type = type;
 		this.direction = direction;
 		this.app = app;
 		this.sprite = sprite;
+		this.speed = speed;
 		setGravity(0.01f);
+		
 	}
 
 
@@ -39,16 +41,13 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
                 try {	
                 	
                     vector = app.getTileMap().getTilePixelLocation(ct.getTile());
-                  if( ct.getCollisionSide() == CollisionSide.RIGHT) {
-                	  setX(vector.x + getWidth());
-                  }
-                  if(ct.getCollisionSide() == CollisionSide.TOP) {
-                    setY(vector.y - getHeight());}
-                  if( ct.getCollisionSide() == CollisionSide.LEFT) {
-                	  setX(vector.x - getWidth());
+                  
+                	  app.deleteGameObject(this);
+                    
+                	  
                   }
                     
-                } catch (TileNotFoundException e) {
+                 catch (TileNotFoundException e) {
                     e.printStackTrace();
                     
                 }
@@ -60,7 +59,7 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 
 	@Override
 	public void update() {
-		setDirectionSpeed(270, -1);		
+		setDirectionSpeed(270, speed);		
 	}
 
 	

@@ -52,11 +52,20 @@ implements ICollidableWithTiles,ICollidableWithGameObjects
 			   setDirectionSpeed(270, -5);
 			   app.player1Turn = ! app.player1Turn;
 		        }
-		   if(key == 'r' && player == 1 && app.player1Turn == true ||key == 'p' && player == 2&& app.player1Turn == false) {
-			   Ammo a = new Ammo(20, 1, app, "bullet.png");
+		   if(key == 'r' && player == 1 && app.player1Turn == true ) {
+			   Ammo a = new Ammo(20, 1, app, "bullet.png",-5);
 			   ammo.add(a);
 			   app.addGameObject(a, super.x, super.y);
 			   app.player1Turn = ! app.player1Turn;
+		   }
+		   if(key == 'p' && player == 2&& app.player1Turn == false) {
+			   Ammo a = new Ammo(20, 1, app, "bullet.png",5);
+			   ammo.add(a);
+			   
+			   app.addGameObject(a, super.x, super.y);
+			   app.player1Turn = ! app.player1Turn;
+			   
+			   
 		   }
 		   
 	    }
