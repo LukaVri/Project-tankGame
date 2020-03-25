@@ -1388,3 +1388,17 @@ FAILURE: java.lang.NoSuchMethodException: tiles.FloorTile.<init>(nl.han.ica.oopg
 FAILURE: java.lang.NoSuchMethodException: tiles.FloorTile.<init>(nl.han.ica.oopg.objects.Sprite)
 [2018-12-23 03:12:21.35] 
 FAILURE: java.lang.NullPointerException
+[2020-30-25 11:30:10.94] 
+FAILURE: java.lang.NullPointerException
+[2020-30-25 11:30:10.96] 
+FAILURE: java.lang.NullPointerException
+[2020-30-25 11:30:10.96] 
+FAILURE: java.lang.NullPointerException
+[2020-30-25 11:30:10.96] 
+FAILURE: java.lang.NullPointerException
+[2020-30-25 11:30:10.96] 
+FAILURE: java.lang.NullPointerException
+[2020-30-25 11:30:10.96] 
+FAILURE: java.lang.NullPointerException
+[2020-30-25 11:30:10.96] 
+FAILURE: java.lang.NullPointerException

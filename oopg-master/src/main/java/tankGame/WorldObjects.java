@@ -1,9 +1,15 @@
 package tankGame;
 
+import java.util.List;
+
+import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
+import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 
-public  class WorldObjects extends SpriteObject {
+public  class WorldObjects extends SpriteObject
+//implements ICollidableWithGameObjects
+{
 	float xPos;
 	float yPos;
 	int size;
@@ -23,4 +29,11 @@ public  class WorldObjects extends SpriteObject {
 		// TODO Auto-generated method stub
 		
 	}
+	//@Override
+	//public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+	//	// TODO Auto-generated method stub
+		
+	//}
+	
+	
 }
