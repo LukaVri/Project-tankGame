@@ -44,18 +44,19 @@ implements ICollidableWithTiles,ICollidableWithGameObjects
 	
 	   @Override
 	    public void keyPressed(int keyCode, char key) {
-		   if (keyCode == app.LEFT && player == 1 || key == 'a'&& player == 2) {
+		   if (keyCode == app.LEFT && player == 1 && app.player1Turn == true|| key == 'a'&& player == 2&& app.player1Turn == false) {
 			   setDirectionSpeed(270, 5);
+			   app.player1Turn = ! app.player1Turn;
 		        }
-		   if (keyCode == app.RIGHT && player == 1 || key == 'd'&& player == 2) {
+		   if (keyCode == app.RIGHT && player == 1 && app.player1Turn == true || key == 'd'&& player == 2&& app.player1Turn == false) {
 			   setDirectionSpeed(270, -5);
-			   
+			   app.player1Turn = ! app.player1Turn;
 		        }
-		   if(key == 'r') {
+		   if(key == 'r' && player == 1 && app.player1Turn == true ||key == 'p' && player == 2&& app.player1Turn == false) {
 			   Ammo a = new Ammo(20, 1, app, "bullet.png");
 			   ammo.add(a);
 			   app.addGameObject(a, super.x, super.y);
-			   
+			   app.player1Turn = ! app.player1Turn;
 		   }
 		   
 	    }

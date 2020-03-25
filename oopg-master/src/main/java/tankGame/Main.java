@@ -11,6 +11,7 @@ import nl.han.ica.oopg.view.View;
 public class Main  extends GameEngine {
 	private Tanks player1;
 	private Tanks player2;
+	boolean player1Turn = true;
 	private ScoreBoard scores;
 	private WorldMaker world = new WorldMaker(60,"tile_earth.png",this);
 	int scorePlayer1 =0;
