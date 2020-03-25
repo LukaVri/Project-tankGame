@@ -46,7 +46,8 @@ public class Main  extends GameEngine {
 	@Override
 	public void update() {
 		scores.setText(Integer.toString(scorePlayer1) +":"+ Integer.toString(scorePlayer2));
-		
+		this.fill(0, 255, 0);
+		this.line(player1.getX(), player1.getY(), this.mouseX,this.mouseY);
 	}
 	private void initializeTileMap() {
         // Load Sprites
