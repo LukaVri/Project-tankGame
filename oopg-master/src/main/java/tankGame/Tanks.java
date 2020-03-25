@@ -1,6 +1,7 @@
 package tankGame;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import nl.han.ica.oopg.collision.CollidedTile;
@@ -20,6 +21,7 @@ implements ICollidableWithTiles
 	
 	private Main app;
 	String sprite;
+	ArrayList<Ammo> ammo = new ArrayList<>();
 	
 	
 	Tanks(Main app, String sprite){
@@ -42,10 +44,21 @@ implements ICollidableWithTiles
 		   if (keyCode == app.LEFT) {
 			   setDirectionSpeed(270, 5);
 		        }
+		   if (keyCode == app.RIGHT) {
+			   setDirectionSpeed(270, -5);
+		        }
+		   if(key == 'r') {
+			   Ammo a = new Ammo(20, 1, app, "tankBlauw.png");
+			   ammo.add(a);
+			   app.addGameObject(a, super.x, super.y);
+		   }
 		   
 	    }
 	   public void keyReleased(int keyCode,char key) {
 		   if (keyCode == app.LEFT) {
+			   setDirectionSpeed(0,0);
+		        }
+		   if (keyCode == app.RIGHT) {
 			   setDirectionSpeed(0, 0);
 		        }
 		   
