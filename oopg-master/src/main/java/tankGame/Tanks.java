@@ -18,6 +18,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 	private Main app;
 	String sprite;
 	int player;
+	boolean clicked;
 	ArrayList<Ammo> ammo = new ArrayList<>();
 
 	Tanks(Main app, String sprite, int player) {
@@ -59,8 +60,39 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 		}
 
 	}
+	void fire() {
+		
+		if(player ==1 ) {
+			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
+				if (getDistance() < 100 && getDistance() > 20) {
 
-	public void mouseClicked(int x, int y, int button) {
+					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app, "bullet.png",
+							getDistance() / 20);
+					ammo.add(a);
+
+					app.addGameObject(a, super.x, super.y);
+					
+					
+				}
+			}
+			
+		}
+		if (player ==2) {
+			Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app, "bullet.png", 5);
+			ammo.add(a);
+
+			app.addGameObject(a, super.x, super.y);
+			
+			
+			
+		}
+		
+		
+		
+	}
+
+/*	public void mousePressed(int x, int y, int button) {
+		if(!clicked) {
 		if (player == 1 && app.player1Turn == true) {
 			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
 				if (getDistance() < 100 && getDistance() > 20) {
@@ -70,19 +102,23 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 					ammo.add(a);
 
 					app.addGameObject(a, super.x, super.y);
-					app.player1Turn = !app.player1Turn;
+					app.player1Turn = false;
+					
 				}
 			}
 		}
-		if (player == 2 && app.player1Turn == false) {
+		else if (player == 2 && app.player1Turn == false) {
 
 			Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app, "bullet.png", 5);
 			ammo.add(a);
 
 			app.addGameObject(a, super.x, super.y);
-			app.player1Turn = !app.player1Turn;
+			app.player1Turn = true;
+		
 		}
-	}
+		}
+		
+	}*/
 
 	@Override
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {

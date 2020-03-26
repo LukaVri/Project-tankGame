@@ -9,10 +9,11 @@ import nl.han.ica.oopg.tile.TileMap;
 import nl.han.ica.oopg.tile.TileType;
 import nl.han.ica.oopg.view.View;
 public class Main  extends GameEngine {
-	private Tanks player1;
-	private Tanks player2;
+	public  Tanks player1;
+	public Tanks player2;
 	boolean player1Turn = true;
 	private ScoreBoard scores;
+	private mouseHandler handler = new mouseHandler(this);
 	private WorldMaker world = new WorldMaker(60,"tile_earth.png",this);
 	int scorePlayer1 =0;
 	int scorePlayer2 =0;
@@ -30,7 +31,7 @@ public class Main  extends GameEngine {
         int worldWidth = 500;
         int worldHeight = 500;
         initializeTileMap();
-       
+        addGameObject(handler);
         player1 = new Tanks(this,"tankGroen.png",1);
         addGameObject(player1, 200, 200);
         player2 = new Tanks(this,"tankBlauw.png",2);
@@ -47,6 +48,7 @@ public class Main  extends GameEngine {
 	public void update() {
 		scores.setText(Integer.toString(scorePlayer1) +":"+ Integer.toString(scorePlayer2));
 	}
+	
 	private void initializeTileMap() {
         // Load Sprites
         Sprite floorSprite = new Sprite(this.MEDIA_URL.concat("tile_earth.png"));
