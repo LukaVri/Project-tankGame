@@ -33,7 +33,6 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		// cursor();
 	}
 
 	@Override
@@ -63,36 +62,25 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 
 	public void mouseClicked(int x, int y, int button) {
 		if (player == 1 && app.player1Turn == true) {
-			if (app.mouseX > super.x) {
-				Ammo a = new Ammo(90 - (super.y - app.mouseY), 20, 1, app, "bullet.png", 5);
-				ammo.add(a);
+			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
+				if (getDistance() < 100 && getDistance() > 20) {
 
-				app.addGameObject(a, super.x, super.y);
-				app.player1Turn = !app.player1Turn;
-			}
-			if (app.mouseX < super.x) {
-				Ammo a = new Ammo(90 + (super.y - app.mouseY), 20, 1, app, "bullet.png", -5);
-				ammo.add(a);
+					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app, "bullet.png",
+							getDistance() / 20);
+					ammo.add(a);
 
-				app.addGameObject(a, super.x, super.y);
-				app.player1Turn = !app.player1Turn;
+					app.addGameObject(a, super.x, super.y);
+					app.player1Turn = !app.player1Turn;
+				}
 			}
 		}
 		if (player == 2 && app.player1Turn == false) {
-			if (app.mouseX > super.x) {
-				Ammo a = new Ammo(90 - (super.y - app.mouseY), 20, 1, app, "bullet.png", 5);
-				ammo.add(a);
 
-				app.addGameObject(a, super.x, super.y);
-				app.player1Turn = !app.player1Turn;
-			}
-			if (app.mouseX < super.x) {
-				Ammo a = new Ammo(90 + (super.y - app.mouseY), 20, 1, app, "bullet.png", -5);
-				ammo.add(a);
+			Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app, "bullet.png", 5);
+			ammo.add(a);
 
-				app.addGameObject(a, super.x, super.y);
-				app.player1Turn = !app.player1Turn;
-			}
+			app.addGameObject(a, super.x, super.y);
+			app.player1Turn = !app.player1Turn;
 		}
 	}
 
@@ -131,9 +119,9 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 
 	}
 
-	public void cursor() {
-		app.fill(0, 255, 0);
-		app.rect(super.x, super.y, 300, 500);
+	public int getDistance() {
+		int d = (int) app.dist(super.x, super.y, app.mouseX, app.mouseY);
+		return d;
 	}
 
 }
