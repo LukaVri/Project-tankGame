@@ -18,10 +18,10 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 	int size;
 	int direction;
 	int type;
-	int speed;
+	float speed;
 	float angle;
 
-	Ammo(float angle, int type, int direction, Main app, String sprite, int speed) {
+	Ammo(float angle, int type, int direction, Main app, String sprite, float speed) {
 
 		super(new Sprite(Main.MEDIA_URL.concat(sprite)));
 		this.angle = angle;
@@ -60,12 +60,14 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 
 	@Override
 	public void update() {
-		setDirectionSpeed(angle, speed);
-		if (angle < 180) {
-			angle = angle + speed;
+		
+		float power = 6 - this.speed;
+		setDirectionSpeed(this.angle, 2);
+		if (this.angle < 180) {
+			this.angle = this.angle + power;
 		}
-		if (angle >= 180) {
-			angle = angle - speed;
+		if (this.angle >= 180) {
+			this.angle = this.angle - power;
 		}
 
 	}

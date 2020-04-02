@@ -30,8 +30,6 @@ public class mouseHandler extends GameObject {
 			
 		}
 		app.player1Turn = ! app.player1Turn;
-		
-		System.out.println("fire");
 	}
 
 	@Override

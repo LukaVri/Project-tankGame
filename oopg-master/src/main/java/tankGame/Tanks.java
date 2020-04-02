@@ -68,9 +68,9 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 				if (getDistance() < 100 && getDistance() > 20) {
 
 					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app, "bullet.png",
-							getDistance() / 20);
+							this.getDistance() / 20);
 					ammo.add(a);
-
+					System.out.println(6-this.getDistance() / 20);
 					app.addGameObject(a, super.x, super.y);
 
 				}
@@ -80,9 +80,9 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 		if (player == 2) {
 			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
 				if (getDistance() < 100 && getDistance() > 20) {
-					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app, "bullet.png", 5);
+					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app, "bullet.png", this.getDistance() / 20);
 					ammo.add(a);
-
+					System.out.println(6-(this.getDistance() / 20));
 					app.addGameObject(a, super.x, super.y);
 				}
 			}
@@ -149,8 +149,8 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 
 	}
 
-	public int getDistance() {
-		int d = (int) app.dist(super.x, super.y, app.mouseX, app.mouseY);
+	public float getDistance() {
+		float d = app.dist(super.x, super.y, app.mouseX, app.mouseY);
 		return d;
 	}
 
