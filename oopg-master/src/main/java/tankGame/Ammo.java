@@ -62,14 +62,30 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 	public void update() {
 		
 		float power = 6 - this.speed;
-		setDirectionSpeed(this.angle, 2);
-		if (this.angle < 180) {
+		setDirectionSpeed(this.angle, speed);
+		if (this.angle < 150) {
 			this.angle = this.angle + power;
 		}
-		if (this.angle >= 180) {
+		if (this.angle >= 240) {
 			this.angle = this.angle - power;
 		}
-
+		
+		if(this.type == 2) {
+			
+		}
+		if(this.type == 3) {
+			if(this.angle >= 150 && this.angle <= 240) {
+				if(this.y > 50) {
+					Ammo a = new Ammo(135, 1, 1, app, "bullet.png",power);
+					app.addGameObject(a, this.x, this.y);
+					Ammo b = new Ammo(180, 1, 1, app, "bullet.png",power);
+					app.addGameObject(b, this.x, this.y);
+					Ammo c = new Ammo(235, 1, 1, app, "bullet.png",power);
+					app.addGameObject(c, this.x, this.y);
+					app.deleteGameObject(this);
+				}
+			}
+		}
 	}
 
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
