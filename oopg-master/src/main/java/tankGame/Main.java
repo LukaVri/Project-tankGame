@@ -13,11 +13,12 @@ public class Main  extends GameEngine {
 	public Tanks player2;
 	boolean player1Turn = true;
 	private ScoreBoard scores;
+	boolean menuOpened = false;
 	private mouseHandler handler = new mouseHandler(this);
 	private WorldMaker world = new WorldMaker(60,"tile_earth.png",this);
 	int scorePlayer1 =0;
 	int scorePlayer2 =0;
-	
+	Menu mainMenu = new Menu("menu.png", this);
 	public static String MEDIA_URL = "src/main/java/tankGame/sprites/"; 
 	public static void main(String[] args) {
  Main m = new Main();
@@ -26,6 +27,9 @@ public class Main  extends GameEngine {
 	
 	@Override
     public void setupGame() {
+		mainMenu.menuOpen = true;
+		
+		
         int worldWidth = 500;
         int worldHeight = 500;
         initializeTileMap();
@@ -44,7 +48,21 @@ public class Main  extends GameEngine {
 
 	@Override
 	public void update() {
+		
 		scores.setText(Integer.toString(scorePlayer1) +":"+ Integer.toString(scorePlayer2));
+		if(mainMenu.menuOpen && menuOpened == false) {
+			 addGameObject(mainMenu,0,0);
+			 mainMenu.maakKnoppen();
+			menuOpened = true;
+			
+		}
+		if(!mainMenu.menuOpen && menuOpened == true) {
+			 deleteGameObject(mainMenu);
+			 deleteGameObject(mainMenu.start);
+			menuOpened = false;
+			
+		}
+		
 	}
 	
 	private void initializeTileMap() {
@@ -89,5 +107,6 @@ public class Main  extends GameEngine {
         };
         tileMap = new TileMap(tileSize, tileTypes, tilesMap);
     }
+	
 
 }

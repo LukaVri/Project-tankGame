@@ -3,13 +3,20 @@ package tankGame;
 public class StartKnop extends MenuKnop {
 
 	
-	StartKnop(int knopSize, int knopX,int knopY,String knopSprite) {
-		super(knopSize, knopX,knopY,knopSprite);
+	StartKnop( int knopX,int knopY,String knopSprite,Main app) {
+		super( knopX,knopY,knopSprite,app);
 		
 	}
 	@Override
-	void ingedrukt() {
-		// TODO Auto-generated method stub
+	boolean ingedrukt() {
+		
+		if(app.mouseX  > this.knopX && app.mouseX < this.knopX + this.width && app.mouseY > this.knopY && app.mouseY < this.knopY + this.height) {
+			return true;
+			
+		}
+		else {
+			return false;
+			}
 		
 	}
 	@Override
@@ -17,5 +24,6 @@ public class StartKnop extends MenuKnop {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

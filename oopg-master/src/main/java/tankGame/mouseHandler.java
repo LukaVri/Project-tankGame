@@ -20,6 +20,7 @@ public class mouseHandler extends GameObject {
 	}
 	@Override
 	public void mousePressed(int x, int y, int button) {
+		if(app.menuOpened == false) {
 		if(app.player1Turn == true) {
 			app.player1.fire();
 			
@@ -31,10 +32,28 @@ public class mouseHandler extends GameObject {
 		}
 		app.player1Turn = ! app.player1Turn;
 	}
+		else if (app.mainMenu.start.ingedrukt()) {
+			app.mainMenu.menuOpen = false;
+			
+			
+			
+			
+		}
+	}
 
 	@Override
 	public void draw(PGraphics g) {
 		// TODO Auto-generated method stub
+		
+	}
+	public void keyPressed(int keyCode, char key) {
+		if(key == 'm') {
+			System.out.println("menuknop");
+			app.mainMenu.menuOpen = !app.mainMenu.menuOpen;
+			
+			
+			
+		}
 		
 	}
 }
