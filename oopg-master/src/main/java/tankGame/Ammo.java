@@ -80,7 +80,7 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 					app.addGameObject(a, this.x, this.y);
 					Ammo b = new Ammo(180, 1, 1, app, "bullet.png",power);
 					app.addGameObject(b, this.x, this.y);
-					Ammo c = new Ammo(235, 1, 1, app, "bullet.png",power);
+					Ammo c = new Ammo(225, 1, 1, app, "bullet.png",power);
 					app.addGameObject(c, this.x, this.y);
 					app.deleteGameObject(this);
 				}
