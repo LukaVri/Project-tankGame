@@ -20,6 +20,7 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 	int type;
 	float speed;
 	float angle;
+	int bounced;
 
 	Ammo(float angle, int type, int direction, Main app, String sprite, float speed) {
 
@@ -45,8 +46,19 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 
 					vector = app.getTileMap().getTilePixelLocation(ct.getTile());
 
-					app.deleteGameObject(this);
-
+					if (this.type != 2 || this.bounced > 2) {
+						app.deleteGameObject(this);
+					}
+					if (this.type == 2 && this.bounced < 3) {
+						this.bounced++;
+						this.y = this.y - 5;
+						if (this.angle < 180) {
+							this.angle = 45;
+						}
+						if (this.angle > 180) {
+							this.angle = 315;
+						}
+					}
 				}
 
 				catch (TileNotFoundException e) {
@@ -60,7 +72,7 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 
 	@Override
 	public void update() {
-		
+
 		float power = 6 - this.speed;
 		setDirectionSpeed(this.angle, speed);
 		if (this.angle < 150) {
@@ -69,22 +81,21 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 		if (this.angle >= 240) {
 			this.angle = this.angle - power;
 		}
-		
-		if(this.type == 2) {
-			
-		}
-		if(this.type == 3) {
-			if(this.angle >= 150 && this.angle <= 240) {
-				if(this.y > 50) {
-					Ammo a = new Ammo(135, 1, 1, app, "bullet.png",power);
+		if (this.type == 3) {
+			if (this.angle >= 150 && this.angle <= 240) {
+				if (this.y > 50) {
+					Ammo a = new Ammo(135, 1, 1, app, "bullet.png", power);
 					app.addGameObject(a, this.x, this.y);
-					Ammo b = new Ammo(180, 1, 1, app, "bullet.png",power);
+					Ammo b = new Ammo(180, 1, 1, app, "bullet.png", power);
 					app.addGameObject(b, this.x, this.y);
-					Ammo c = new Ammo(225, 1, 1, app, "bullet.png",power);
+					Ammo c = new Ammo(225, 1, 1, app, "bullet.png", power);
 					app.addGameObject(c, this.x, this.y);
 					app.deleteGameObject(this);
 				}
 			}
+		}
+		if (this.type == 4) {
+
 		}
 	}
 
@@ -92,7 +103,9 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 
 		for (GameObject go : collidedGameObjects) {
 			if (go instanceof Tanks) {
+
 				app.deleteGameObject(this);
+
 			}
 		}
 
