@@ -116,6 +116,7 @@ public class WorldMaker {
                     
             };
             app.setTileMap(new TileMap(tileSize, tileTypes, tilesMap));
+            app.getView().setBackground(app.loadImage(app.MEDIA_URL.concat("backGround2.png")));
         }
 	 }
 	
