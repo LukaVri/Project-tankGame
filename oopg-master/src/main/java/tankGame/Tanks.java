@@ -18,10 +18,12 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 	private Main app;
 	String sprite;
 	int player;
+	float xPos;
+	float yPos;
 	boolean clicked;
 	ArrayList<Ammo> ammo = new ArrayList<>();
 
-	Tanks(Main app, String sprite, int player) {
+	Tanks(Main app, String sprite, int player,float xPos,float yPos) {
 
 		super(new Sprite(Main.MEDIA_URL.concat(sprite)));
 
@@ -29,6 +31,8 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 		this.sprite = sprite;
 		this.player = player;
 		setGravity(0.01f);
+		this.xPos = xPos;
+		this.yPos = yPos;
 	}
 
 	@Override

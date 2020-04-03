@@ -8,6 +8,7 @@ import nl.han.ica.oopg.objects.TextObject;
 import nl.han.ica.oopg.tile.TileMap;
 import nl.han.ica.oopg.tile.TileType;
 import nl.han.ica.oopg.view.View;
+@SuppressWarnings("serial")
 public class Main  extends GameEngine {
 	public  Tanks player1;
 	public Tanks player2;
@@ -28,6 +29,8 @@ public class Main  extends GameEngine {
 	
 	@Override
     public void setupGame() {
+		player1 = new Tanks(this,"tankGroen.png",1,100,100);
+		player2 = new Tanks(this,"tankBlauw.png",2,200,100);
 		mainMenu.menuOpen = true;
 		
 		
@@ -69,10 +72,10 @@ public class Main  extends GameEngine {
 	}
 	void loadGame() {
 		    world.initializeTileMap();
-		    player1 = new Tanks(this,"tankGroen.png",1);
-	        addGameObject(player1, 200, 200);
-	        player2 = new Tanks(this,"tankBlauw.png",2);
-	        addGameObject(player2, 300, 200);
+		    
+	        addGameObject(player1, player1.xPos, player1.yPos);
+	        
+	        addGameObject(player2, player2.xPos, player2.yPos);
 	        scores = new ScoreBoard("1:0", 20);
 	        addGameObject(scores,50,100);
 		
