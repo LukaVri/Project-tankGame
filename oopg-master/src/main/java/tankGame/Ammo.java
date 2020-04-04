@@ -96,9 +96,6 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidab
 				}
 			}
 		}
-		if (this.type == 4) {
-
-		}
 	}
 
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {

@@ -33,6 +33,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		this.player = player;
 		this.xPos = xPos;
 		this.yPos = yPos;
+		//setGravity(0.01f);
 	}
 
 	@Override
@@ -71,8 +72,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		if (player == 1) {
 			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
 				if (getDistance() < 100 && getDistance() > 20) {
-
-					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 3, 1, app, "bullet.png",
+					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY) + randomNumber(-10, 10), 3, 1, app, "bullet.png",
 							this.getDistance() / 20,this);
 					ammo.add(a);
 					app.addGameObject(a, super.x, super.y);
@@ -84,7 +84,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		if (player == 2) {
 			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
 				if (getDistance() < 100 && getDistance() > 20) {
-					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 2, 1, app, "bullet.png", this.getDistance() / 20,this);
+					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY) + randomNumber(-10, 10), 2, 1, app, "bullet.png", this.getDistance() / 20,this);
 					ammo.add(a);
 					app.addGameObject(a, super.x, super.y);
 				}
@@ -130,17 +130,17 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 					
 					if (ct.getCollisionSide() == CollisionSide.RIGHT) {
 						vector = app.getTileMap().getTilePixelLocation(ct.getTile());
-						setX(vector.x + getWidth());
+						setX(vector.x + this.getWidth());
 					}
 					if (ct.getCollisionSide() == CollisionSide.TOP) {
-						//vector = app.getTileMap().getTilePixelLocation(ct.getTile());
-						//setY(vector.y - getHeight());
+						vector = app.getTileMap().getTilePixelLocation(ct.getTile());
+						setY(vector.y - this.getHeight());
 						
 					
 					}
 					if (ct.getCollisionSide() == CollisionSide.LEFT) {
 						vector = app.getTileMap().getTilePixelLocation(ct.getTile());
-						setX(vector.x - getWidth());
+						setX(vector.x - this.getWidth());
 					}
 
 				} catch (TileNotFoundException e) {
@@ -154,9 +154,14 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 
 	
 
-	public float getDistance() {
+	private float getDistance() {
 		float d = app.dist(super.x, super.y, app.mouseX, app.mouseY);
 		return d;
+	}
+	
+	private float randomNumber(float min, float max) {
+		float randomNum =(float) Math.random() * (max - min + 1) + min;
+		return randomNum;
 	}
 
 }
