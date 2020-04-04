@@ -46,10 +46,11 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidab
 			if (ct.getTile() instanceof groundTiles) {
 				try {
 
-					vector = app.getTileMap().getTilePixelLocation(ct.getTile());
+					vector = app.getTileMap().getTileIndex(ct.getTile());
 
 					if (this.type != 2 || this.bounced > 2) {
 						app.deleteGameObject(this);
+						app.getTileMap().setTile((int)vector.x, (int)vector.y, -1);
 					}
 					if (this.type == 2 && this.bounced < 3) {
 						this.bounced++;
