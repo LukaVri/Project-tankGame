@@ -20,7 +20,9 @@ public class mouseHandler extends GameObject {
 	}
 	@Override
 	public void mousePressed(int x, int y, int button) {
-	   app.getMainMenu().getSelect().ingedrukt();
+		Menu menu = app.getMainMenu();
+		levelselectKnop knop = menu.getSelect();
+		knop.ingedrukt();
 		if(app.getMenuOpened() == false) {
 		if(app.player1Turn == true) {
 			app.getPlayer1().fire();
@@ -50,6 +52,7 @@ public class mouseHandler extends GameObject {
 	public void keyPressed(int keyCode, char key) {
 		if(key == 'm') {
 			System.out.println("menuknop");
+			
 			app.getMainMenu().menuOpen = !app.getMainMenu().menuOpen;
 			
 			
