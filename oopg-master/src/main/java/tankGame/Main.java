@@ -10,17 +10,19 @@ import nl.han.ica.oopg.tile.TileType;
 import nl.han.ica.oopg.view.View;
 @SuppressWarnings("serial")
 public class Main  extends GameEngine {
-	public  Tanks player1;
-	public Tanks player2;
+	private  Tanks player1;
+	private Tanks player2;
 	boolean player1Turn = true;
 	private ScoreBoard scores;
-	boolean menuOpened = false;
-	boolean worldLoaded = false;
+	private boolean menuOpened = false;
+	private boolean worldLoaded = false;
 	private mouseHandler handler = new mouseHandler(this);
-	public  WorldMaker world = new WorldMaker(60,"tile_earth.png",this);
-	int scorePlayer1 =0;
-	int scorePlayer2 =0;
-	Menu mainMenu = new Menu("menu.png", this);
+	private  WorldMaker world = new WorldMaker(60,"tile_earth.png",this);
+	private int scorePlayer1 =0;
+	private int scorePlayer2 =0;
+	private Menu mainMenu = new Menu("menu.png", this);
+	
+
 	public static String MEDIA_URL = "src/main/java/tankGame/sprites/"; 
 	public static void main(String[] args) {
  Main m = new Main();
@@ -102,6 +104,17 @@ public class Main  extends GameEngine {
 	void addScorePlayer2(int score) {
 		scorePlayer2 += score;
 		
+	}
+	public boolean getMenuOpened() {
+		return menuOpened;
+	}
+
+	public void setMenuOpened(boolean menuOpened) {
+		this.menuOpened = menuOpened;
+	}
+
+	public WorldMaker getWorld() {
+		return world;
 	}
 	
 	
