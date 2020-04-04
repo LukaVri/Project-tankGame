@@ -137,8 +137,11 @@ public class WorldMaker {
             };
             app.setTileMap(new TileMap(tileSize, tileTypes, tilesMap));
             app.getView().setBackground(app.loadImage(app.MEDIA_URL.concat("backGround2.png")));
-            app.player1.xPos = 80;
-            app.player2.xPos = 400;
+            app.getPlayer1().xPos = 80;
+            app.getPlayer2().xPos = 400;
+            app.getPlayer1().yPos = 130;
+            app.getPlayer2().yPos = 145;
+        
         }
 	 }
 	

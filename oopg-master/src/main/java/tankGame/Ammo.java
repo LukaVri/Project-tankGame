@@ -12,7 +12,7 @@ import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 import processing.core.PVector;
 
-public class Ammo extends SpriteObject implements ICollidableWithTiles {
+public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidableWithGameObjects {
 	Main app;
 	String sprite;
 	int size;
@@ -21,8 +21,9 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 	float speed;
 	float angle;
 	int bounced;
+	Tanks firedFrom;
 
-	Ammo(float angle, int type, int direction, Main app, String sprite, float speed) {
+	Ammo(float angle, int type, int direction, Main app, String sprite, float speed,Tanks firedFrom) {
 
 		super(new Sprite(Main.MEDIA_URL.concat(sprite)));
 		this.angle = angle;
@@ -31,6 +32,7 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 		this.app = app;
 		this.sprite = sprite;
 		this.speed = speed;
+		this.firedFrom = firedFrom;
 		setGravity(0.1f);
 		setFriction(0.1f);
 
@@ -84,11 +86,11 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 		if (this.type == 3) {
 			if (this.angle >= 150 && this.angle <= 240) {
 				if (this.y > 50) {
-					Ammo a = new Ammo(135, 1, 1, app, "bullet.png", power);
+					Ammo a = new Ammo(135, 1, 1, app, "bullet.png", power,firedFrom);
 					app.addGameObject(a, this.x, this.y);
-					Ammo b = new Ammo(180, 1, 1, app, "bullet.png", power);
+					Ammo b = new Ammo(180, 1, 1, app, "bullet.png", power,firedFrom);
 					app.addGameObject(b, this.x, this.y);
-					Ammo c = new Ammo(225, 1, 1, app, "bullet.png", power);
+					Ammo c = new Ammo(225, 1, 1, app, "bullet.png", power,firedFrom);
 					app.addGameObject(c, this.x, this.y);
 					app.deleteGameObject(this);
 				}
@@ -103,8 +105,10 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles {
 
 		for (GameObject go : collidedGameObjects) {
 			if (go instanceof Tanks) {
-
+				if(go != firedFrom) {
 				app.deleteGameObject(this);
+				((Tanks) go).damage(20);
+				}
 
 			}
 		}

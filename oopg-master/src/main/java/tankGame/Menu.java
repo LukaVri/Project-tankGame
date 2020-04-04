@@ -26,6 +26,12 @@ public void update() {
 	
 	
 }
+public StartKnop getStart() {
+	return start;
+}
+public levelselectKnop getSelect() {
+	return select;
+}
 void destroyKnoppen() {
 	app.deleteGameObject(start);
 	app.deleteGameObject(select);

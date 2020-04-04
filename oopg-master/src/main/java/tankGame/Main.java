@@ -29,8 +29,8 @@ public class Main  extends GameEngine {
 	
 	@Override
     public void setupGame() {
-		player1 = new Tanks(this,"tankGroen.png",1,100,100);
-		player2 = new Tanks(this,"tankBlauw.png",2,200,100);
+		player1 = new Tanks(this,"tankGroen.png",1,100,270);
+		player2 = new Tanks(this,"tankBlauw.png",2,200,270);
 		mainMenu.menuOpen = true;
 		
 		
@@ -80,6 +80,27 @@ public class Main  extends GameEngine {
 	        addGameObject(scores,50,100);
 		
 		
+		
+	}
+	void addScorePlayer1(int score) {
+		scorePlayer1 += score;
+		
+	}
+	
+	public Tanks getPlayer1() {
+		return player1;
+	}
+
+	public Tanks getPlayer2() {
+		return player2;
+	}
+
+	public Menu getMainMenu() {
+		return mainMenu;
+	}
+
+	void addScorePlayer2(int score) {
+		scorePlayer2 += score;
 		
 	}
 	

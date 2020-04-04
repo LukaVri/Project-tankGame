@@ -13,7 +13,7 @@ import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 import processing.core.PVector;
 
-public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects {
+public class Tanks extends SpriteObject implements ICollidableWithTiles {
 
 	private Main app;
 	String sprite;
@@ -21,6 +21,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 	float xPos;
 	float yPos;
 	boolean clicked;
+	float health = 100;
 	ArrayList<Ammo> ammo = new ArrayList<>();
 
 	Tanks(Main app, String sprite, int player,float xPos,float yPos) {
@@ -30,14 +31,14 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 		this.app = app;
 		this.sprite = sprite;
 		this.player = player;
-		setGravity(0.01f);
 		this.xPos = xPos;
 		this.yPos = yPos;
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		checkHealth();
+	
 	}
 
 	@Override
@@ -45,12 +46,12 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 		if (keyCode == app.LEFT && player == 1 && app.player1Turn == true
 				|| key == 'a' && player == 2 && app.player1Turn == false) {
 			setDirectionSpeed(270, 5);
-			// app.player1Turn = ! app.player1Turn;
+			 app.player1Turn = ! app.player1Turn;
 		}
 		if (keyCode == app.RIGHT && player == 1 && app.player1Turn == true
 				|| key == 'd' && player == 2 && app.player1Turn == false) {
 			setDirectionSpeed(270, -5);
-			// app.player1Turn = ! app.player1Turn;
+			 app.player1Turn = ! app.player1Turn;
 		}
 
 	}
@@ -72,7 +73,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 				if (getDistance() < 100 && getDistance() > 20) {
 
 					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 3, 1, app, "bullet.png",
-							this.getDistance() / 20);
+							this.getDistance() / 20,this);
 					ammo.add(a);
 					app.addGameObject(a, super.x, super.y);
 
@@ -83,7 +84,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 		if (player == 2) {
 			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
 				if (getDistance() < 100 && getDistance() > 20) {
-					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 2, 1, app, "bullet.png", this.getDistance() / 20);
+					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 2, 1, app, "bullet.png", this.getDistance() / 20,this);
 					ammo.add(a);
 					app.addGameObject(a, super.x, super.y);
 				}
@@ -92,29 +93,30 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 		}
 
 	}
+	
+	void damage(float damageDone) {
+		this.health -= damageDone;
+		System.out.println(this.health);
+		
+	}
+	void checkHealth() {
+		if(health <= 0) {
+			if(player == 1) {
+			app.addScorePlayer2(1);
+			
+			}
+			if(player == 2) {
+				app.addScorePlayer1(1);
+				}
+			this.health = 100;
+		}
+		
+		
+		
+	}
 
-	/*
-	 * public void mousePressed(int x, int y, int button) { if(!clicked) { if
-	 * (player == 1 && app.player1Turn == true) { if (getAngleFrom(app.mouseX,
-	 * app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) { if
-	 * (getDistance() < 100 && getDistance() > 20) {
-	 * 
-	 * Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app,
-	 * "bullet.png", getDistance() / 20); ammo.add(a);
-	 * 
-	 * app.addGameObject(a, super.x, super.y); app.player1Turn = false;
-	 * 
-	 * } } } else if (player == 2 && app.player1Turn == false) {
-	 * 
-	 * Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY), 20, 1, app,
-	 * "bullet.png", 5); ammo.add(a);
-	 * 
-	 * app.addGameObject(a, super.x, super.y); app.player1Turn = true;
-	 * 
-	 * } }
-	 * 
-	 * }
-	 */
+
+
 
 	@Override
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
@@ -125,14 +127,19 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 
 				try {
 
-					vector = app.getTileMap().getTilePixelLocation(ct.getTile());
+					
 					if (ct.getCollisionSide() == CollisionSide.RIGHT) {
+						vector = app.getTileMap().getTilePixelLocation(ct.getTile());
 						setX(vector.x + getWidth());
 					}
 					if (ct.getCollisionSide() == CollisionSide.TOP) {
-						setY(vector.y - getHeight());
+						//vector = app.getTileMap().getTilePixelLocation(ct.getTile());
+						//setY(vector.y - getHeight());
+						
+					
 					}
 					if (ct.getCollisionSide() == CollisionSide.LEFT) {
+						vector = app.getTileMap().getTilePixelLocation(ct.getTile());
 						setX(vector.x - getWidth());
 					}
 
@@ -145,11 +152,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles, ICollid
 
 	}
 
-	@Override
-	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 	public float getDistance() {
 		float d = app.dist(super.x, super.y, app.mouseX, app.mouseY);
