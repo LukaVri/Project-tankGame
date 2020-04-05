@@ -48,7 +48,7 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidab
 
 					vector = app.getTileMap().getTileIndex(ct.getTile());
 
-					if (this.type != 2 || this.bounced > 2) {
+					if (this.type != 2 && this.type != 4 || this.bounced > 2) {
 						app.deleteGameObject(this);
 						app.getTileMap().setTile((int)vector.x, (int)vector.y, -1);
 					}
@@ -62,11 +62,22 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidab
 							this.angle = 315;
 						}
 					}
+					if (this.type == 4) {
+						app.deleteGameObject(this);
+						for(int i = -3; i < 4 ; i++) {
+							for(int j = -3; j < 4 ; j++) {
+							app.getTileMap().setTile((int)vector.x+i, (int)vector.y+j, -1);
+							}
+						}
+					}
 				}
 
 				catch (TileNotFoundException e) {
 					e.printStackTrace();
 
+				}
+				catch (ArrayIndexOutOfBoundsException e) {
+					e.printStackTrace();
 				}
 			}
 		}
@@ -96,6 +107,9 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidab
 					app.deleteGameObject(this);
 				}
 			}
+		}
+		if(this.x < 0 || this.x > 500 || this.y < 0 || this.y > 500) {
+			app.deleteGameObject(this);
 		}
 	}
 
