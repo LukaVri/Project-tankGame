@@ -33,7 +33,8 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		this.player = player;
 		this.xPos = xPos;
 		this.yPos = yPos;
-		//setGravity(0.01f);
+		setGravity(0.01f);
+		setFriction(0.01f);
 	}
 
 	@Override
@@ -114,43 +115,44 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		
 		
 	}
+	
+	 @Override
+		public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
 
+			PVector vector;
+			for (CollidedTile ct : collidedTiles) {
+				if (ct.getTile() instanceof groundTiles) {
 
+					try {
 
-
-	@Override
-	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
-
-		PVector vector;
-		for (CollidedTile ct : collidedTiles) {
-			if (ct.getTile() instanceof groundTiles) {
-
-				try {
-
-					
-					if (ct.getCollisionSide() == CollisionSide.RIGHT) {
-						vector = app.getTileMap().getTilePixelLocation(ct.getTile());
-						setX(vector.x + this.getWidth());
-					}
-					if (ct.getCollisionSide() == CollisionSide.TOP) {
-						vector = app.getTileMap().getTilePixelLocation(ct.getTile());
-						setY(vector.y - this.getHeight());
 						
-					
-					}
-					if (ct.getCollisionSide() == CollisionSide.LEFT) {
-						vector = app.getTileMap().getTilePixelLocation(ct.getTile());
-						setX(vector.x - this.getWidth());
-					}
+						if (ct.getCollisionSide() == CollisionSide.RIGHT) {
+							vector = app.getTileMap().getTilePixelLocation(ct.getTile());
+							this.setX(vector.x + this.getWidth());
+						}
+						if (ct.getCollisionSide() == CollisionSide.TOP) {
+							vector = app.getTileMap().getTilePixelLocation(ct.getTile());
+							this.setY(vector.y - this.getHeight());
+							
+						
+						}
+						if (ct.getCollisionSide() == CollisionSide.LEFT) {
+							vector = app.getTileMap().getTilePixelLocation(ct.getTile());
+							this.setX(vector.x - this.getWidth());
+						}
 
-				} catch (TileNotFoundException e) {
-					e.printStackTrace();
+					} catch (TileNotFoundException e) {
+						e.printStackTrace();
 
+					}
 				}
 			}
-		}
 
-	}
+		}
+	
+
+
+	
 
 	
 

@@ -85,7 +85,7 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidab
 			this.angle = this.angle - power;
 		}
 		if (this.type == 3) {
-			if (this.angle >= 150 && this.angle <= 240) {
+			if (this.angle >= 100 && this.angle <= 260) {
 				if (this.y > 50) {
 					Ammo a = new Ammo(135, 1, 1, app, "bullet.png", power,firedFrom);
 					app.addGameObject(a, this.x, this.y);
