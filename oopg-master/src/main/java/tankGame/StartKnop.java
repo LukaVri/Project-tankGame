@@ -11,6 +11,7 @@ public class StartKnop extends MenuKnop {
 	boolean ingedrukt() {
 		
 		if(app.mouseX  > this.knopX && app.mouseX < this.knopX + this.width && app.mouseY > this.knopY && app.mouseY < this.knopY + this.height) {
+			app.getMainMenu().menuOpen = false;
 			return true;
 			
 		}

@@ -28,7 +28,7 @@ public class mouseHandler extends GameObject {
 	@Override
 	public void mousePressed(int x, int y, int button) {
 		Menu menu = app.getMainMenu();
-		levelselectKnop knop = menu.getSelect();
+		MenuKnop knop = menu.getKnop(1);
 		knop.ingedrukt();
 		if(app.getMenuOpened() == false) {
 		if(app.player1Turn == true) {
@@ -42,8 +42,8 @@ public class mouseHandler extends GameObject {
 		}
 		app.player1Turn = ! app.player1Turn;
 	}
-		else if (app.getMainMenu().getStart().ingedrukt()) {
-			app.getMainMenu().menuOpen = false;
+		else if (app.getMainMenu().getKnop(0).ingedrukt()) {
+			
 			
 			
 			
