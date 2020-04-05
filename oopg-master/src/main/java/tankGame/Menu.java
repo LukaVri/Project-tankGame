@@ -36,6 +36,9 @@ public MenuKnop getKnop(int welke) {
 	return knop.get(welke);
 }
 
+public ArrayList<MenuKnop> getK() {
+	return knop;
+}
 
 
 

@@ -4,7 +4,6 @@ import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
 public class mouseHandler extends GameObject {
-	
 	Main app;
 	mouseHandler(Main app){
 		this.app = app;
@@ -27,9 +26,9 @@ public class mouseHandler extends GameObject {
 	}
 	@Override
 	public void mousePressed(int x, int y, int button) {
-		Menu menu = app.getMainMenu();
-		MenuKnop knop = menu.getKnop(1);
-		knop.ingedrukt();
+		for(MenuKnop k : app.getMainMenu().getK()) {
+			k.ingedrukt();
+		}
 		if(app.getMenuOpened() == false) {
 		if(app.player1Turn == true) {
 			app.getPlayer1().fire();
@@ -42,13 +41,7 @@ public class mouseHandler extends GameObject {
 		}
 		app.player1Turn = ! app.player1Turn;
 	}
-		else if (app.getMainMenu().getKnop(0).ingedrukt()) {
-			
-			
-			
-			
-			
-		}
+		
 	}
 
 	@Override
@@ -61,9 +54,6 @@ public class mouseHandler extends GameObject {
 			System.out.println("menuknop");
 			
 			app.getMainMenu().menuOpen = !app.getMainMenu().menuOpen;
-			
-			
-			
 		}
 		
 	}
