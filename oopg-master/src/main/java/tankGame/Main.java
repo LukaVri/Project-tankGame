@@ -21,7 +21,7 @@ public class Main  extends GameEngine {
 	private int scorePlayer1 =0;
 	private int scorePlayer2 =0;
 	private Menu mainMenu = new Menu("menu.png", this);
-	
+	private bulletSelector sel = new bulletSelector(this);
 
 	public static String MEDIA_URL = "src/main/java/tankGame/sprites/"; 
 	public static void main(String[] args) {
@@ -40,7 +40,7 @@ public class Main  extends GameEngine {
         int worldHeight = 500;
         
         addGameObject(handler);
-       
+        addGameObject(sel);
         View view = new View(worldWidth, worldHeight);
 
         setView(view);
@@ -49,6 +49,7 @@ public class Main  extends GameEngine {
 
 	@Override
 	public void update() {
+		
 		if(worldLoaded == true) {
 		scores.setText(Integer.toString(scorePlayer1) +":"+ Integer.toString(scorePlayer2));
 		}

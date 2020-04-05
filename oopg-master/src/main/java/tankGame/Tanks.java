@@ -22,6 +22,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 	float yPos;
 	boolean clicked;
 	float health = 100;
+	int selectedType = 0;
 	ArrayList<Ammo> ammo = new ArrayList<>();
 
 	Tanks(Main app, String sprite, int player,float xPos,float yPos) {
@@ -73,7 +74,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		if (player == 1) {
 			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
 				if (getDistance() < 100 && getDistance() > 20) {
-					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY) + randomNumber(-10, 10), 3, 1, app, "bullet.png",
+					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY) + randomNumber(-10, 10), selectedType, 1, app, "bullet.png",
 							this.getDistance() / 20,this);
 					ammo.add(a);
 					app.addGameObject(a, super.x, super.y);
@@ -85,7 +86,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		if (player == 2) {
 			if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
 				if (getDistance() < 100 && getDistance() > 20) {
-					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY) + randomNumber(-10, 10), 2, 1, app, "bullet.png", this.getDistance() / 20,this);
+					Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY) + randomNumber(-10, 10), selectedType, 1, app, "bullet.png", this.getDistance() / 20,this);
 					ammo.add(a);
 					app.addGameObject(a, super.x, super.y);
 				}
