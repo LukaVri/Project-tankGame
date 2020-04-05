@@ -52,6 +52,8 @@ public class Main extends GameEngine {
 
 	@Override
 	public void update() {
+		healthP1.displayHealth(player1);
+		healthP2.displayHealth(player2);
 
 		if (worldLoaded == true) {
 		}

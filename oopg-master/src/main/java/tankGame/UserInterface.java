@@ -19,9 +19,4 @@ public class UserInterface extends TextObject {
 		setText(name +Integer.toString(player.health));
 		
 	}
-
-	public void update() {
-		this.displayHealth(app.getPlayer1());
-		this.displayHealth(app.getPlayer2());
-	}
 }
