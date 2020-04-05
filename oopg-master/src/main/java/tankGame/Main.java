@@ -83,8 +83,8 @@ public class Main extends GameEngine {
 		addGameObject(player1, player1.xPos, player1.yPos);
 		addGameObject(player2, player2.xPos, player2.yPos);
 		addGameObject(scores, 50, 100);
-		addGameObject(healthP1, player1.xPos, player1.yPos);
-		addGameObject(healthP2, player2.xPos, player2.yPos);
+		addGameObject(healthP1, 0, 0);
+		addGameObject(healthP2, 330, 0);
 
 	}
 

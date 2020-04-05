@@ -4,6 +4,7 @@ import nl.han.ica.oopg.objects.TextObject;
 
 public class UserInterface extends TextObject {
 	int health = 100;
+	
 	Main app;
 	String name;
 
