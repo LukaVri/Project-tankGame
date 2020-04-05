@@ -15,8 +15,15 @@ public class mouseHandler extends GameObject {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		ScoreBoard Score = app.getScoreBoard();
+		if(Score.getPlayer1Score() >= 3) {
+			Score.setText("Player 1 Wins");
+			
+		}
+        if(Score.getPlayer2Score() >= 3) {
+        	Score.setText("Player 2 Wins");
+			
+		}
 	}
 	@Override
 	public void mousePressed(int x, int y, int button) {

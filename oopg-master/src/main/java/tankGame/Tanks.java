@@ -22,8 +22,11 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 	float yPos;
 	boolean clicked;
 	int health = 100;
-	int selectedType = 0;
+	//Ammo
+	String ammoSprite = "bullet.png";
+	int selectedType = 1;
 	ArrayList<Ammo> ammo = new ArrayList<>();
+	int amountOfBounce = 8,amountOfScatter = 4,AmountOfBomb = 1;
 
 	Tanks(Main app, String sprite, int player, float xPos, float yPos) {
 
@@ -70,6 +73,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 	}
 
 	void fire() {
+		if(selectedType == 1|| selectedType ==2 && amountOfBounce > 0 || selectedType == 3 && amountOfScatter > 0 || selectedType == 4 && AmountOfBomb > 0) {
 		float range = 0;
 		if (getAngleFrom(app.mouseX, app.mouseY) > 270 || getAngleFrom(app.mouseX, app.mouseY) < 90) {
 			if (getDistance() < 100 && getDistance() > 20) {
@@ -81,12 +85,30 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 			else if(getDistance() >= 100) {
 				range = 100;
 			}
+			
 				Ammo a = new Ammo(getAngleFrom(app.mouseX, app.mouseY) + randomNumber(-10, 10), selectedType, 1, app,
-						"bullet.png", range / 20, this);
+						ammoSprite, range / 20, this);
+				switch(selectedType) {
+				case 1:
+					//Nothing
+					break;
+				
+				case 2:
+					amountOfBounce -=1;
+					break;
+				case 3:
+					amountOfScatter -=1;
+					break;
+				case 4:
+					AmountOfBomb -=1;
+					break;
+				
+				
+				}
 				ammo.add(a);
 				app.addGameObject(a, super.x, super.y);
 
-			
+		}
 		}
 	}
 
@@ -100,14 +122,24 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		if (health <= 0) {
 			if (player == 1) {
 				app.getScoreBoard().addScorePlayer2(1);
-
+				
+				
 			}
 			if (player == 2) {
 				app.getScoreBoard().addScorePlayer1(1);
 			}
 			this.health = 100;
+			explosion explosionSprite = new explosion(app);
+			app.addGameObject(explosionSprite,this.getX(),this.getY());
+			app.deleteGameObject(this);
+			respawn();
 		}
 
+	}
+	void respawn() {
+		app.addGameObject(this,xPos,yPos - 50);
+		
+		
 	}
 
 	@Override
@@ -151,5 +183,23 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		float randomNum = (float) Math.random() * (max - min + 1) + min;
 		return randomNum;
 	}
+
+	public String getAmmoSprite() {
+		return ammoSprite;
+	}
+
+	public void setAmmoSprite(String ammoSprite) {
+		this.ammoSprite = ammoSprite;
+	}
+
+	public int getSelectedType() {
+		return selectedType;
+	}
+
+	public void setSelectedType(int selectedType) {
+		this.selectedType = selectedType;
+	}
+
+	
 
 }

@@ -47,7 +47,8 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidab
 				try {
 
 					vector = app.getTileMap().getTileIndex(ct.getTile());
-
+					explosion explosionSprite = new explosion(app);
+					app.addGameObject(explosionSprite,this.getX(),this.getY());
 					if (this.type != 2 && this.type != 4 || this.bounced > 2) {
 						app.deleteGameObject(this);
 						app.getTileMap().setTile((int)vector.x, (int)vector.y, -1);
@@ -118,8 +119,10 @@ public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidab
 		for (GameObject go : collidedGameObjects) {
 			if (go instanceof Tanks) {
 				if(go != firedFrom) {
-				app.deleteGameObject(this);
-				((Tanks) go).damage(20);
+					explosion explosionSprite = new explosion(app);
+					app.addGameObject(explosionSprite,this.getX(),this.getY());
+					app.deleteGameObject(this);
+					((Tanks) go).damage(20);
 				}
 
 			}

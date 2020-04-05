@@ -22,46 +22,54 @@ public class bulletSelector extends GameObject {
 		
 	}
 	public void keyPressed(int keyCode, char key) {
+		Tanks player1 = app.getPlayer1();
+		Tanks player2 = app.getPlayer2();
 		switch (key) {
 		case '1':
 			if(app.player1Turn) {
-			app.getPlayer1().selectedType = 1;
+			 player1.setSelectedType(1);
+			 player1.setAmmoSprite("bullet.png");
 			}
 			else {
-				app.getPlayer2().selectedType = 1;
-				
+				 player2.setSelectedType(1);
+				 player2.setAmmoSprite("bullet.png");
 			}
-			System.out.println(app.getPlayer1().selectedType);
+			
 			break;
 		case '2':
 			if(app.player1Turn) {
-				app.getPlayer1().selectedType = 2;
+				player1.setSelectedType(2);
+				player1.setAmmoSprite("bouncyBullet.png");
 				}
 				else {
-					app.getPlayer2().selectedType = 2;
-					
+					player2.setSelectedType(2);
+					player2.setAmmoSprite("bouncyBullet.png");
 				}
-			System.out.println(app.getPlayer1().selectedType);
+			
 			break;
 		case '3':
 			if(app.player1Turn) {
-				app.getPlayer1().selectedType = 3;
+				player1.setSelectedType(3);
+				player1.setAmmoSprite("scatterBullet.png");
 				}
 				else {
-					app.getPlayer2().selectedType = 3;
+					player2.setSelectedType(3);
+					player2.setAmmoSprite("scatterBullet.png");
 					
 				}
-			System.out.println(app.getPlayer1().selectedType);
+			
 			break;
 		case '4':
 			if(app.player1Turn) {
-				app.getPlayer1().selectedType = 4;
+				player1.setSelectedType(4);
+				player1.setAmmoSprite("bombBullet.png");
 				}
 				else {
-					app.getPlayer2().selectedType = 4;
+					player2.setSelectedType(4);
+					player2.setAmmoSprite("bombBullet.png");
 					
 				}
-			System.out.println(app.getPlayer1().selectedType);
+			
 			break;
 		}
 		}

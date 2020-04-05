@@ -1,12 +1,8 @@
 package tankGame;
 
-import javazoom.jl.player.Player;
+
 import nl.han.ica.oopg.engine.GameEngine;
-import nl.han.ica.oopg.objects.GameObject;
-import nl.han.ica.oopg.objects.Sprite;
-import nl.han.ica.oopg.objects.TextObject;
-import nl.han.ica.oopg.tile.TileMap;
-import nl.han.ica.oopg.tile.TileType;
+
 import nl.han.ica.oopg.view.View;
 
 @SuppressWarnings("serial")
@@ -14,6 +10,7 @@ public class Main extends GameEngine {
 	private Tanks player1;
 	private Tanks player2;
 	boolean player1Turn = true;
+	
 	
 	private ScoreBoard scores;
 	private UserInterface healthP1;
@@ -79,6 +76,7 @@ public class Main extends GameEngine {
 
 	}
 
+	
 	void loadGame() {
 		world.initializeTileMap();
 
@@ -117,4 +115,10 @@ public class Main extends GameEngine {
 	public WorldMaker getWorld() {
 		return world;
 	}
+
+	public ScoreBoard getScores() {
+		return scores;
+	}
+	
+
 }

@@ -20,11 +20,28 @@ public class ScoreBoard extends TextObject {
 	}
 
 	void displayScore() {
+		
 		this.setText(Integer.toString(this.player1Score) + ":" + Integer.toString(this.player2Score));
-
+		
 	}
 	
 	public void update() {
 		this.displayScore();
+	}
+
+	public int getPlayer1Score() {
+		return player1Score;
+	}
+
+	public void setPlayer1Score(int player1Score) {
+		this.player1Score = player1Score;
+	}
+
+	public int getPlayer2Score() {
+		return player2Score;
+	}
+
+	public void setPlayer2Score(int player2Score) {
+		this.player2Score = player2Score;
 	}
 }
