@@ -21,7 +21,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 	float xPos;
 	float yPos;
 	boolean clicked;
-	float health = 100;
+	int health = 100;
 	int selectedType = 0;
 	ArrayList<Ammo> ammo = new ArrayList<>();
 
@@ -99,11 +99,11 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 	void checkHealth() {
 		if (health <= 0) {
 			if (player == 1) {
-				app.addScorePlayer2(1);
+				app.getScoreBoard().addScorePlayer2(1);
 
 			}
 			if (player == 2) {
-				app.addScorePlayer1(1);
+				app.getScoreBoard().addScorePlayer1(1);
 			}
 			this.health = 100;
 		}
