@@ -10,16 +10,15 @@ public class levelselectKnop extends MenuKnop {
 	@Override
 	boolean ingedrukt() {
 		if(app.mouseX  > this.knopX && app.mouseX < this.knopX + this.width && app.mouseY > this.knopY && app.mouseY < this.knopY + this.height) {
-			
 			if(!(app.getWorld().worldType + 1 > app.getWorld().amountOfTypes) ) {
 			app.getWorld().worldType += 1;
-			
 			}
 			else {
 				app.getWorld().worldType = 1;
 				
 			}
 			System.out.println(app.getWorld().worldType);
+			app.getMainMenu().getLevelName().displayLevelName(app.getWorld().worldType);
 			return true;
 			
 			

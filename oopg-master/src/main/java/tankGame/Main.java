@@ -59,13 +59,13 @@ public class Main extends GameEngine {
 		}
 		if (mainMenu.menuOpen && menuOpened == false) {
 			addGameObject(mainMenu, 0, 0);
-			mainMenu.maakKnoppen();
+			mainMenu.maakMenu();
 
 			menuOpened = true;
 
 		}
 		if (!mainMenu.menuOpen && menuOpened == true) {
-			mainMenu.destroyKnoppen();
+			mainMenu.destroyMenu();
 			deleteGameObject(mainMenu);
 
 			if (worldLoaded == false) {

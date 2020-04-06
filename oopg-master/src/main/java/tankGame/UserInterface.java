@@ -19,4 +19,8 @@ public class UserInterface extends TextObject {
 		setText(name +Integer.toString(player.health));
 		
 	}
+	
+	public void displayLevelName(int number) {
+		setText(name + Integer.toString(number));
+	}
 }
