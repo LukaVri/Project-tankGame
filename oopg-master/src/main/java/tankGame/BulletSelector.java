@@ -3,9 +3,9 @@ package tankGame;
 import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
-public class bulletSelector extends GameObject {
+public class BulletSelector extends GameObject {
 	Main app;
-	bulletSelector(Main app) {
+	BulletSelector(Main app) {
 		this.app = app;
 		
 		
@@ -26,7 +26,7 @@ public class bulletSelector extends GameObject {
 		Tanks player2 = app.getPlayer2();
 		switch (key) {
 		case '1':
-			if(app.player1Turn) {
+			if(app.isPlayer1Turn()) {
 			 player1.setSelectedType(1);
 			 player1.setAmmoSprite("bullet.png");
 			}
@@ -37,7 +37,7 @@ public class bulletSelector extends GameObject {
 			
 			break;
 		case '2':
-			if(app.player1Turn) {
+			if(app.isPlayer1Turn()) {
 				player1.setSelectedType(2);
 				player1.setAmmoSprite("bouncyBullet.png");
 				}
@@ -48,7 +48,7 @@ public class bulletSelector extends GameObject {
 			
 			break;
 		case '3':
-			if(app.player1Turn) {
+			if(app.isPlayer1Turn()) {
 				player1.setSelectedType(3);
 				player1.setAmmoSprite("scatterBullet.png");
 				}
@@ -60,7 +60,7 @@ public class bulletSelector extends GameObject {
 			
 			break;
 		case '4':
-			if(app.player1Turn) {
+			if(app.isPlayer1Turn()) {
 				player1.setSelectedType(4);
 				player1.setAmmoSprite("bombBullet.png");
 				}

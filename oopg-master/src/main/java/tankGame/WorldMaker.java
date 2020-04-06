@@ -120,8 +120,8 @@ public class WorldMaker {
                 {1, 1, 1, 1, 1, 1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
         };
         app.setTileMap(new TileMap(tileSize, tileTypes, tilesMap));
-        app.getPlayer1().xPos = 80;
-        app.getPlayer2().xPos = 400;
+        app.getPlayer1().setxPos(80);
+        app.getPlayer2().setxPos(400);
         app.getView().setBackground(app.loadImage(app.MEDIA_URL.concat("backGround1.png")));
     }
         if(worldType == 2) {
@@ -159,10 +159,10 @@ public class WorldMaker {
             };
             app.setTileMap(new TileMap(tileSize, tileTypes, tilesMap));
             app.getView().setBackground(app.loadImage(app.MEDIA_URL.concat("backGround2.png")));
-            app.getPlayer1().xPos = 80;
-            app.getPlayer2().xPos = 400;
-            app.getPlayer1().yPos = 130;
-            app.getPlayer2().yPos = 145;
+            app.getPlayer1().setxPos(80);
+            app.getPlayer2().setxPos(400);
+            app.getPlayer1().setyPos(130);
+            app.getPlayer2().setyPos(145);
         
         }
 	 }

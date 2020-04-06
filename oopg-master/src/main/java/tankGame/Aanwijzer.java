@@ -15,10 +15,6 @@ public class Aanwijzer extends SpriteObject {
 		
 	}
 
-	public void destroySelf() {
-		app.deleteGameObject(this);
-		
-		
-	}
+	
 
 }

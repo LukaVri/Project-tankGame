@@ -5,10 +5,8 @@ import java.util.List;
 
 import nl.han.ica.oopg.collision.CollidedTile;
 import nl.han.ica.oopg.collision.CollisionSide;
-import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.collision.ICollidableWithTiles;
 import nl.han.ica.oopg.exceptions.TileNotFoundException;
-import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 import processing.core.PVector;
@@ -16,17 +14,17 @@ import processing.core.PVector;
 public class Tanks extends SpriteObject implements ICollidableWithTiles {
 
 	private Main app;
-	String sprite;
-	int player;
-	float xPos;
-	float yPos;
-	boolean clicked;
-	int health = 100;
+	private String sprite;
+	private int player;
+	private float xPos;
+	private float yPos;
+	private boolean clicked;
+	private int health = 100;
 	//Ammo
-	String ammoSprite = "bullet.png";
-	int selectedType = 1;
-	ArrayList<Ammo> ammo = new ArrayList<>();
-	int amountOfBounce = 8,amountOfScatter = 4,AmountOfBomb = 1;
+	private String ammoSprite = "bullet.png";
+	private int selectedType = 1;
+	private ArrayList<Ammo> ammo = new ArrayList<>();
+	private int amountOfBounce = 8,amountOfScatter = 4,AmountOfBomb = 1;
 
 	Tanks(Main app, String sprite, int player, float xPos, float yPos) {
 
@@ -49,15 +47,15 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 
 	@Override
 	public void keyPressed(int keyCode, char key) {
-		if (keyCode == app.LEFT && player == 1 && app.player1Turn == true
-				|| key == 'a' && player == 2 && app.player1Turn == false) {
+		if (keyCode == app.LEFT && player == 1 && app.isPlayer1Turn() == true
+				|| key == 'a' && player == 2 && app.isPlayer1Turn() == false) {
 			setDirectionSpeed(270, 5);
-			app.player1Turn = !app.player1Turn;
+			app.setPlayer1Turn(!app.isPlayer1Turn());
 		}
-		if (keyCode == app.RIGHT && player == 1 && app.player1Turn == true
-				|| key == 'd' && player == 2 && app.player1Turn == false) {
+		if (keyCode == app.RIGHT && player == 1 && app.isPlayer1Turn() == true
+				|| key == 'd' && player == 2 && app.isPlayer1Turn() == false) {
 			setDirectionSpeed(270, -5);
-			app.player1Turn = !app.player1Turn;
+			app.setPlayer1Turn(!app.isPlayer1Turn());
 		}
 
 	}
@@ -137,7 +135,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 
 	}
 	void checkTurn() {
-		if(player == 1 && app.player1Turn == true || player == 2 && app.player1Turn == false) {
+		if(player == 1 && app.isPlayer1Turn() == true || player == 2 && app.isPlayer1Turn() == false) {
 			 
 			app.getPijl().setX(this.xPos);
 			app.getPijl().setY(this.yPos);
@@ -209,6 +207,30 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 
 	public void setSelectedType(int selectedType) {
 		this.selectedType = selectedType;
+	}
+
+	public float getxPos() {
+		return xPos;
+	}
+
+	public void setxPos(float xPos) {
+		this.xPos = xPos;
+	}
+
+	public float getyPos() {
+		return yPos;
+	}
+
+	public void setyPos(float yPos) {
+		this.yPos = yPos;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
 	}
 
 	

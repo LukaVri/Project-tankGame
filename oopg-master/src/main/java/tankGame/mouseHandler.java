@@ -30,7 +30,7 @@ public class mouseHandler extends GameObject {
 			k.ingedrukt();
 		}
 		if(app.getMenuOpened() == false) {
-		if(app.player1Turn == true) {
+		if(app.isPlayer1Turn() == true) {
 			app.getPlayer1().fire();
 			
 		}
@@ -39,7 +39,7 @@ public class mouseHandler extends GameObject {
 			
 			
 		}
-		app.player1Turn = ! app.player1Turn;
+		app.setPlayer1Turn(! app.isPlayer1Turn());
 	}
 		
 	}

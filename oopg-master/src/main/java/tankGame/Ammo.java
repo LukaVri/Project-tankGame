@@ -15,7 +15,7 @@ import processing.core.PVector;
 public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidableWithGameObjects {
 	Main app;
 	String sprite;
-	int size;
+    int size;
 	int direction;
 	int type;
 	float speed;

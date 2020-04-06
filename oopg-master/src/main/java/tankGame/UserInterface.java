@@ -16,7 +16,7 @@ public class UserInterface extends TextObject {
 	}
 
 	public void displayHealth(Tanks player) {
-		setText(name +Integer.toString(player.health));
+		setText(name +Integer.toString(player.getHealth()));
 		
 	}
 	

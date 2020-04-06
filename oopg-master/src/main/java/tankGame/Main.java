@@ -9,7 +9,7 @@ import nl.han.ica.oopg.view.View;
 public class Main extends GameEngine {
 	private Tanks player1;
 	private Tanks player2;
-	boolean player1Turn = true;
+	private boolean player1Turn = true;
 	
 	
 	private ScoreBoard scores;
@@ -21,7 +21,7 @@ public class Main extends GameEngine {
 	private mouseHandler handler = new mouseHandler(this);
 	private WorldMaker world = new WorldMaker(60, "tile_earth.png", this);
 	private Menu mainMenu = new Menu("menu.png", this);
-	private bulletSelector sel = new bulletSelector(this);
+	private BulletSelector sel = new BulletSelector(this);
 	
 	private Aanwijzer pijl = new Aanwijzer ("turnArrow.png",this);
 
@@ -86,8 +86,8 @@ public class Main extends GameEngine {
 	void loadGame() {
 		world.initializeTileMap();
 
-		addGameObject(player1, player1.xPos, player1.yPos);
-		addGameObject(player2, player2.xPos, player2.yPos);
+		addGameObject(player1, player1.getxPos(), player1.getyPos());
+		addGameObject(player2, player2.getxPos(), player2.getyPos());
 		addGameObject(scores, width/2, 20);
 		addGameObject(healthP1, 0, 0);
 		addGameObject(healthP2, 330, 0);
@@ -127,6 +127,14 @@ public class Main extends GameEngine {
 	}
 	public Aanwijzer getPijl() {
 		return pijl;
+	}
+
+	public boolean isPlayer1Turn() {
+		return player1Turn;
+	}
+
+	public void setPlayer1Turn(boolean player1Turn) {
+		this.player1Turn = player1Turn;
 	}
 	
 
