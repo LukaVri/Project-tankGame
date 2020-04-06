@@ -22,6 +22,8 @@ public class Main extends GameEngine {
 	private WorldMaker world = new WorldMaker(60, "tile_earth.png", this);
 	private Menu mainMenu = new Menu("menu.png", this);
 	private bulletSelector sel = new bulletSelector(this);
+	
+	private Aanwijzer pijl = new Aanwijzer ("turnArrow.png",this);
 
 	public static String MEDIA_URL = "src/main/java/tankGame/sprites/";
 
@@ -41,7 +43,7 @@ public class Main extends GameEngine {
 
 		int worldWidth = 500;
 		int worldHeight = 500;
-
+		addGameObject(pijl);
 		addGameObject(handler);
 		addGameObject(sel);
 		View view = new View(worldWidth, worldHeight);
@@ -49,6 +51,8 @@ public class Main extends GameEngine {
 		setView(view);
 		size(worldWidth, worldHeight);
 	}
+
+	
 
 	@Override
 	public void update() {
@@ -84,7 +88,7 @@ public class Main extends GameEngine {
 
 		addGameObject(player1, player1.xPos, player1.yPos);
 		addGameObject(player2, player2.xPos, player2.yPos);
-		addGameObject(scores, 50, 100);
+		addGameObject(scores, width/2, 20);
 		addGameObject(healthP1, 0, 0);
 		addGameObject(healthP2, 330, 0);
 
@@ -120,6 +124,9 @@ public class Main extends GameEngine {
 
 	public ScoreBoard getScores() {
 		return scores;
+	}
+	public Aanwijzer getPijl() {
+		return pijl;
 	}
 	
 

@@ -36,7 +36,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 		this.sprite = sprite;
 		this.player = player;
 		this.xPos = xPos;
-		this.yPos = yPos;
+		this.yPos = yPos;		
 		setGravity(0.01f);
 		setFriction(0.01f);
 	}
@@ -44,7 +44,7 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 	@Override
 	public void update() {
 		checkHealth();
-
+		checkTurn();
 	}
 
 	@Override
@@ -135,6 +135,17 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 			respawn();
 		}
 
+	}
+	void checkTurn() {
+		if(player == 1 && app.player1Turn == true || player == 2 && app.player1Turn == false) {
+			 
+			app.getPijl().setX(this.xPos);
+			app.getPijl().setY(this.yPos);
+		}
+		
+		
+		
+		
 	}
 	void respawn() {
 		app.addGameObject(this,xPos,yPos - 50);
