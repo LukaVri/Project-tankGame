@@ -9,9 +9,9 @@ public class StartKnop extends MenuKnop {
 	}
 	@Override
 	boolean ingedrukt() {
-		
+		Menu menu = app.getMainMenu();
 		if(app.mouseX  > this.knopX && app.mouseX < this.knopX + this.width && app.mouseY > this.knopY && app.mouseY < this.knopY + this.height) {
-			app.getMainMenu().menuOpen = false;
+			menu.setMenuOpen(false);
 			return true;
 			
 		}

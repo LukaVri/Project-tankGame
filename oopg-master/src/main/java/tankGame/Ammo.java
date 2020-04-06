@@ -13,15 +13,15 @@ import nl.han.ica.oopg.objects.SpriteObject;
 import processing.core.PVector;
 
 public class Ammo extends SpriteObject implements ICollidableWithTiles,ICollidableWithGameObjects {
-	Main app;
-	String sprite;
-    int size;
-	int direction;
-	int type;
-	float speed;
-	float angle;
-	int bounced;
-	Tanks firedFrom;
+	private Main app;
+	private String sprite;
+    private int size;
+	private int direction;
+	private int type;
+	private float speed;
+	private float angle;
+	private int bounced;
+	private Tanks firedFrom;
 
 	Ammo(float angle, int type, int direction, Main app, String sprite, float speed,Tanks firedFrom) {
 

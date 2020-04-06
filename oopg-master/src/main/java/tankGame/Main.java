@@ -39,7 +39,7 @@ public class Main extends GameEngine {
 		scores = new ScoreBoard("1:0", 20);
 		healthP1 = new UserInterface("100", 20, this, "player 1 HP: ");
 		healthP2 = new UserInterface("100", 20, this, "player 2 HP: ");
-		mainMenu.menuOpen = true;
+		mainMenu.setMenuOpen(true);
 
 		int worldWidth = 500;
 		int worldHeight = 500;
@@ -61,14 +61,14 @@ public class Main extends GameEngine {
 
 		if (worldLoaded == true) {
 		}
-		if (mainMenu.menuOpen && menuOpened == false) {
+		if (mainMenu.isMenuOpen() && menuOpened == false) {
 			addGameObject(mainMenu, 0, 0);
 			mainMenu.maakMenu();
 
 			menuOpened = true;
 
 		}
-		if (!mainMenu.menuOpen && menuOpened == true) {
+		if (!mainMenu.isMenuOpen() && menuOpened == true) {
 			mainMenu.destroyMenu();
 			deleteGameObject(mainMenu);
 

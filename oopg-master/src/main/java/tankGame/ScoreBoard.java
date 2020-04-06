@@ -3,8 +3,8 @@ package tankGame;
 import nl.han.ica.oopg.objects.TextObject;
 
 public class ScoreBoard extends TextObject {
-	int player1Score = 0;
-	int player2Score = 0;
+	private int player1Score = 0;
+	private int player2Score = 0;
 
 	public ScoreBoard(String text, int fontSize) {
 		super(text, fontSize);

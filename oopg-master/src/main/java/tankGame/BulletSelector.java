@@ -4,7 +4,7 @@ import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
 public class BulletSelector extends GameObject {
-	Main app;
+	private Main app;
 	BulletSelector(Main app) {
 		this.app = app;
 		

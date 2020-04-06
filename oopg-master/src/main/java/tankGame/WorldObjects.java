@@ -10,11 +10,11 @@ import nl.han.ica.oopg.objects.SpriteObject;
 public  class WorldObjects extends SpriteObject
 //implements ICollidableWithGameObjects
 {
-	float xPos;
-	float yPos;
-	int size;
-	Main app;
-	String sprite;
+	private float xPos;
+	private float yPos;
+	private int size;
+	private Main app;
+	private String sprite;
 	WorldObjects(float xPos,float yPos,int size,String sprite,Main app){
 		super(new Sprite(Main.MEDIA_URL.concat(sprite)));
 		this.xPos = xPos;

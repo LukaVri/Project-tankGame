@@ -10,12 +10,12 @@ import nl.han.ica.oopg.tile.TileType;
 
 public class WorldMaker {
 
-	Main app;
-	String groundSprite;
-	int size;
-	int worldType =1;
-	int amountOfTypes = 2;
-	ArrayList<WorldObjects> blocks = new ArrayList<>();
+	private Main app;
+	private String groundSprite;
+	private int size;
+	private int worldType =1;
+	private int amountOfTypes = 2;
+	private ArrayList<WorldObjects> blocks = new ArrayList<>();
 	WorldMaker(int size,String groundSprite,Main app){
 		this.size = size;
 		this.app = app;
@@ -166,5 +166,17 @@ public class WorldMaker {
         
         }
 	 }
+
+	public int getWorldType() {
+		return worldType;
+	}
+
+	public void setWorldType(int worldType) {
+		this.worldType = worldType;
+	}
+
+	public int getAmountOfTypes() {
+		return amountOfTypes;
+	}
 	
 }

@@ -6,11 +6,11 @@ import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 
 public class Menu extends SpriteObject {
-String menuSprite;
-boolean menuOpen;
-Main app;
-ArrayList<MenuKnop> knop = new ArrayList<>();
-UserInterface levelName;
+private String menuSprite;
+private boolean menuOpen;
+private Main app;
+private ArrayList<MenuKnop> knop = new ArrayList<>();
+private UserInterface levelName;
 
 Menu(String menuSprite,Main app){
 	super(new Sprite(Main.MEDIA_URL.concat(menuSprite)));
@@ -47,6 +47,12 @@ public ArrayList<MenuKnop> getK() {
 
 public UserInterface getLevelName() {
 	return levelName;
+}
+public boolean isMenuOpen() {
+	return menuOpen;
+}
+public void setMenuOpen(boolean menuOpen) {
+	this.menuOpen = menuOpen;
 }
 
 

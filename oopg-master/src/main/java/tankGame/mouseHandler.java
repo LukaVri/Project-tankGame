@@ -4,7 +4,7 @@ import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
 public class mouseHandler extends GameObject {
-	Main app;
+	private Main app;
 	mouseHandler(Main app){
 		this.app = app;
 		
@@ -50,10 +50,11 @@ public class mouseHandler extends GameObject {
 		
 	}
 	public void keyPressed(int keyCode, char key) {
+		Menu menu = app.getMainMenu();
 		if(key == 'm') {
 			System.out.println("menuknop");
 			
-			app.getMainMenu().menuOpen = !app.getMainMenu().menuOpen;
+			menu.setMenuOpen(!menu.isMenuOpen());
 		}
 		
 	}

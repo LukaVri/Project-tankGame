@@ -9,16 +9,18 @@ public class levelselectKnop extends MenuKnop {
 
 	@Override
 	boolean ingedrukt() {
+		WorldMaker world = app.getWorld();
+		Menu menu = app.getMainMenu();
 		if(app.mouseX  > this.knopX && app.mouseX < this.knopX + this.width && app.mouseY > this.knopY && app.mouseY < this.knopY + this.height) {
-			if(!(app.getWorld().worldType + 1 > app.getWorld().amountOfTypes) ) {
-			app.getWorld().worldType += 1;
+			if(!(app.getWorld().getWorldType() + 1 > world.getAmountOfTypes()) ) {
+			world.setWorldType(world.getWorldType() + 1);
 			}
 			else {
-				app.getWorld().worldType = 1;
+				world.setWorldType(1);
 				
 			}
-			System.out.println(app.getWorld().worldType);
-			app.getMainMenu().getLevelName().displayLevelName(app.getWorld().worldType);
+			System.out.println(world.getWorldType());
+			menu.getLevelName().displayLevelName(world.getWorldType());
 			return true;
 			
 			

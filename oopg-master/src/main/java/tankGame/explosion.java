@@ -5,9 +5,9 @@ import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 
 public class explosion extends SpriteObject {
-	Main app;
-	float timer;
-	float setter = 100;
+	private Main app;
+	private float timer;
+	private float setter = 100;
 	public explosion(Main app ) {
 		super(new Sprite(Main.MEDIA_URL.concat("explosion.png")));
 		this.app = app;

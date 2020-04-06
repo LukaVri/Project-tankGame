@@ -18,7 +18,6 @@ public class Tanks extends SpriteObject implements ICollidableWithTiles {
 	private int player;
 	private float xPos;
 	private float yPos;
-	private boolean clicked;
 	private int health = 100;
 	//Ammo
 	private String ammoSprite = "bullet.png";
